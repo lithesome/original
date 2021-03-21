@@ -1,0 +1,51 @@
+.logo a:hover {
+  background: none;
+}
+.logo a img {
+  max-width: 185px;
+}
+.sidebar-button .button {
+  padding: 1em 0;
+}
+.sidebar-button .button:hover {
+  opacity: 0.7;
+}
+.sidebar-button .button i,
+.sidebar-button .button svg {
+  font-size: 24px;
+  color: #fff;
+}
+.sidebar-fon {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  cursor: pointer;
+  z-index: 5554;
+}
+.side-bar-hider {
+  background: #4a76a8;
+  background: #fff;
+  padding: 0.5em 1em;
+}
+.side-bar-hider .text {
+  text-align: center;
+  line-height: 2;
+  font-size: 16px;
+  font-style: italic;
+  color: #ccc;
+}
+.side-bar-hider:hover {
+  cursor: pointer;
+  background: #d9e2ec;
+}
+.side-bar-hider:hover .text {
+  color: #686868;
+}
+.side-bar-hider i,
+.side-bar-hider svg {
+  color: #dc3545;
+  font-size: 30px;
+}

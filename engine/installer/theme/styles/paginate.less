@@ -1,0 +1,19 @@
+@import "var";
+
+.paginate {
+	.pagination {
+		.page-item {
+			&.active {
+				.page-link {
+					background: @main-color;
+					color: @white;
+					font-weight: bold;
+					z-index: 0;
+				}
+			}
+			.page-link {
+				border-radius: 0;
+			}
+		}
+	}
+}

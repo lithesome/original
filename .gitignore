@@ -1,0 +1,10 @@
+.idea
+.htaccess
+/composer.json
+/composer.lock
+/config.php
+/Controllers
+/tmp
+/vendor
+/public/themes
+/public/uploads

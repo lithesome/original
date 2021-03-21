@@ -1,0 +1,243 @@
+<?php
+
+	if (file_exists(__DIR__ . '/../config.php')) {
+		exit('System already installed! Exit...' . PHP_EOL);
+	}
+
+	use Core\Classes\Console\Interactive;
+
+	error_reporting(E_ALL);
+	ini_set('display_errors', '1');
+
+	define('ROOT', dirname(__FILE__, 2));
+
+	include_once __DIR__ . '/../Core/Classes/Console/Interactive.php';
+	include_once __DIR__ . '/../Helpers/custom.php';
+
+	new InstallEngine();
+
+	class InstallEngine
+	{
+		const SECTION_HEAD = 1;
+		const SECTION_ITEM = 2;
+
+		private $animated;
+
+		public $theme;
+
+		protected $default_files = array(
+			'default.composer.json' => 'composer.json',
+			'default.config.php' => 'config.php',
+			'default.htaccess' => '.htaccess',
+		);
+
+		public function __construct()
+		{
+			$this->animated = !isset($_SERVER['argv'][1]);
+
+// 			set files
+			$this->__('SET ENGINE FILES' . PHP_EOL, self::SECTION_HEAD);
+			foreach ($this->default_files as $oldName => $newName) {
+				$this->rename($this->get_root_path($oldName), $this->get_root_path($newName));
+			}
+
+//			update composer
+			$this->__('UPDATE COMPOSER' . PHP_EOL, self::SECTION_HEAD);
+			$this->updateComposer();
+
+//			set default config
+			$this->__('CREATE INTERACTIVE DIALOG' . PHP_EOL, self::SECTION_HEAD);
+			$dialogInstance = new Dialog(file_get_contents($this->get_root_path('config.php')), $this);
+
+//			save input data to config
+			$this->__('SAVE CONFIG' . PHP_EOL, self::SECTION_HEAD);
+			file_put_contents($this->get_root_path('config.php'), $dialogInstance->getContent());
+
+//			controller installation
+			$this->__('INSTALL CONTROLLER' . PHP_EOL, self::SECTION_HEAD);
+			$this->installHomeController($this->get_root_path('engine/installer/core'), $this->get_root_path('Controllers'));
+
+//			site theme installation
+			$this->__('INSTALL TEMPLATE' . PHP_EOL, self::SECTION_HEAD);
+			$this->installHomeController($this->get_root_path('engine/installer/theme'), $this->get_root_theme(''));
+
+//			remove installer files
+			$this->__('REMOVE INSTALLER FILES' . PHP_EOL, self::SECTION_HEAD);
+			$this->clean();
+		}
+
+		protected function updateComposer()
+		{
+			__(exec("composer update"));
+			return $this;
+		}
+
+		protected function installHomeController($source_path, $destination_path)
+		{
+			$destination_path = rtrim($destination_path, '/');
+			if (make_dir($destination_path)) {
+				$this->__("\tcreate directory " . $destination_path . PHP_EOL, self::SECTION_ITEM);
+			}
+			foreach (scandir($source_path) as $path) {
+				if ($path == '.' || $path == '..') {
+					continue;
+				}
+				$new_source_path = "{$source_path}/{$path}";
+				$new_destination_path = "{$destination_path}/{$path}";
+				if (is_dir($new_source_path)) {
+					$this->installHomeController($new_source_path, $new_destination_path);
+					continue;
+				}
+				$this->__("\tcreate file " . $new_destination_path . PHP_EOL, self::SECTION_ITEM);
+				copy($new_source_path, $new_destination_path);
+			}
+			return $this;
+		}
+
+		protected function rename($oldName, $newName)
+		{
+			$this->__("\trename " . $oldName . ' to ' . $newName . PHP_EOL, self::SECTION_ITEM);
+			rename($oldName, $newName);
+			return $this;
+		}
+
+		protected function clean()
+		{
+			scan_dir_recursive_callback($this->get_root_path('engine/installer'), function ($file_or_dir) {
+				if (is_dir($file_or_dir)) {
+					$this->__("\tremove directory " . $file_or_dir . PHP_EOL, self::SECTION_ITEM);
+					rmdir($file_or_dir);
+					return true;
+				}
+				$this->__("\tremove file " . $file_or_dir . PHP_EOL, self::SECTION_ITEM);
+				unlink($file_or_dir);
+				return true;
+			});
+			$this->__("\tremove file " . $this->get_root_path('engine/install') . PHP_EOL, self::SECTION_ITEM);
+			unlink($this->get_root_path('engine/install'));
+			$this->__("\tremove directory " . $this->get_root_path('engine/installer') . PHP_EOL, self::SECTION_ITEM);
+			rmdir($this->get_root_path('engine/installer'));
+			return $this;
+		}
+
+		protected function get_root_path($file)
+		{
+			$file = ltrim($file, '/');
+			return ROOT . '/' . $file;
+		}
+
+		protected function get_root_theme($file)
+		{
+			$file = ltrim($file, '/');
+			return $this->get_root_path('public/themes/' . $this->theme . '/' . $file);
+		}
+
+		protected function __($string, $animated_level)
+		{
+			__($string);
+			if ($this->animated) {
+				$animated_level === self::SECTION_HEAD ? sleep(1) : usleep(25000);
+			}
+			return $this;
+		}
+	}
+
+	class Dialog
+	{
+		protected $content;
+
+		protected $engine;
+
+		public function __construct($content, InstallEngine $engine)
+		{
+			$this->content = $content;
+			$this->engine = $engine;
+
+			$this->generateEncryptionKey()
+				->setSiteName()
+				->setMainTheme()
+				->setSiteScheme()
+				->setSiteHost()
+				->setSiteDatabase()
+				->setDatabaseHost()
+				->setDatabasePort()
+				->setDatabaseUser()
+				->setDatabasePass();
+		}
+
+		public function getContent()
+		{
+			return $this->content;
+		}
+
+		protected function generateEncryptionKey()
+		{
+			$this->content = str_replace('[encryption_key]', gen(64), $this->content);
+			return $this;
+		}
+
+		protected function setSiteScheme()
+		{
+			$dialog = Interactive::dialog('Enter site scheme (or `HTTP`)');
+			$this->content = str_replace('[site_scheme]', $dialog->getConsoleInput() ?: 'http', $this->content);
+			return $this;
+		}
+
+		protected function setSiteHost()
+		{
+			$host = basename(ROOT);
+			$dialog = Interactive::dialog('Enter site host (or `' . $host . '`)');
+			$this->content = str_replace('[site_host]', $dialog->getConsoleInput() ?: $host, $this->content);
+			return $this;
+		}
+
+		protected function setSiteDatabase()
+		{
+			$dialog = Interactive::dialog('Enter site Database Name (or `simpleDB`)');
+			$this->content = str_replace('[db_name]', $dialog->getConsoleInput() ?: 'simpleDB', $this->content);
+			return $this;
+		}
+
+		protected function setDatabaseHost()
+		{
+			$dialog = Interactive::dialog('Enter site Database Host (or `localhost`)');
+			$this->content = str_replace('[db_host]', $dialog->getConsoleInput() ?: 'localhost', $this->content);
+			return $this;
+		}
+
+		protected function setDatabasePort()
+		{
+			$dialog = Interactive::dialog('Enter site Database Port (or `3306`)');
+			$this->content = str_replace('[db_port]', $dialog->getConsoleInput() ?: 3306, $this->content);
+			return $this;
+		}
+
+		protected function setDatabaseUser()
+		{
+			$dialog = Interactive::dialog('Enter site Database User (or `root`)');
+			$this->content = str_replace('[db_user]', $dialog->getConsoleInput() ?: 'root', $this->content);
+			return $this;
+		}
+
+		protected function setDatabasePass()
+		{
+			$dialog = Interactive::dialog('Enter site Database Pass (or ``)');
+			$this->content = str_replace('[db_pass]', $dialog->getConsoleInput(), $this->content);
+			return $this;
+		}
+
+		protected function setMainTheme()
+		{
+			$dialog = Interactive::dialog('Enter site main theme (or `default`)');
+			$this->engine->theme = $dialog->getConsoleInput() ?: 'default';
+			$this->content = str_replace('[main_theme]', $this->engine->theme, $this->content);
+			return $this;
+		}
+
+		protected function setSiteName()
+		{
+			$dialog = Interactive::dialog('Enter site name (or `MySite`)');
+			$this->content = str_replace('[site_name]', $dialog->getConsoleInput() ?: 'MySite', $this->content);
+			return $this;
+		}
+	}

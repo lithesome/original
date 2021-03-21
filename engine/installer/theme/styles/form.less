@@ -1,0 +1,65 @@
+@import "var";
+
+form {
+	.errors {
+		color: @bootstrap-danger;
+		font-weight: bold;
+	}
+	label {
+		font-weight: bold;
+	}
+	.preview-image {
+		.image-item {
+			.close {
+				position: absolute;
+				right: 0;
+				background: @white;
+				border: @line;
+				padding: 0.5em;
+				&:hover {
+					cursor: pointer;
+					background: @main-hover-fon;
+				}
+			}
+		}
+		img {
+			max-width: 240px;
+		}
+	}
+	#images-form-field {
+		.image-item {
+			.close {
+				padding: 0.1em 0.25em;
+			}
+		}
+		img {
+			max-width: 180px;
+		}
+	}
+	.remove-link {
+		.btn {
+			padding: 0 1.5em;
+			font-weight: bold;
+		}
+	}
+	.select-options {
+		border: solid 1px rgba(0, 123, 255, .25);
+		.item {
+			//border-bottom: @line;
+			&:hover {
+				background: @main-hover-fon;
+				cursor: pointer;
+				font-weight: bold;
+			}
+		}
+	}
+	.input.select-field {
+		white-space: nowrap;
+		overflow: hidden;
+	}
+	.btn {
+		.close {
+			float: left;
+		}
+	}
+}

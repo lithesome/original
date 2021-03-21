@@ -1,0 +1,142 @@
+@import "../../../styles/var";
+
+.debug {
+	//position: fixed;
+	bottom: 0;
+	background: @main-fon;
+	font-size: 12px;
+	width: 100%;
+	//margin-left: -15px;
+	border: @line;
+	z-index: 5;
+	.item {
+		a {
+			display: flex;
+		}
+		display: flex;
+		margin: 10px;
+		.name {
+			font-weight: bold;
+			color: chocolate;
+		}
+		.value {
+			margin-left: 0.5em;
+			font-weight: bold;
+		}
+	}
+}
+
+.modal {
+	z-index: 9999;
+	.modal-content {
+		z-index: 9999;
+		border-radius: 0;
+		.accordion {
+			ol {
+				//padding-left:4px;
+				margin: 0;
+				li {
+				}
+			}
+			.card {
+				border-radius: 0;
+				.rarr {
+					padding: 0 5px;
+					color: @bootstrap-danger;
+				}
+				.line {
+					background: @bootstrap-danger;
+					color: @white;
+					font-weight: bold;
+					margin-left: 10px;
+					padding: 0 5px;
+				}
+				.files-block {
+					font-weight: bold;
+				}
+				.card-header {
+					border-radius: 0;
+					&:hover {
+						cursor: pointer;
+						opacity: 0.6;
+					}
+					.class-block {
+						font-weight: bold;
+						.class {
+						}
+						.type {
+						}
+						.function {
+						}
+					}
+					.file-block {
+						color: #777;
+						.file {
+						}
+						.line {
+						}
+					}
+					.query-block {
+						font-weight: bold;
+						color: chocolate;
+						pre {
+							color: chocolate;
+							max-width: unset;
+							max-height: unset;
+							overflow: hidden;
+							margin-bottom: 0;
+							.rarr {
+								font-size: 2em;
+							}
+						}
+						.query-segments {
+							&.query-segment-0 {
+								color: chocolate;
+							}
+							&.query-segment-1 {
+								color: @bootstrap-purple;
+							}
+							&.query-segment-2 {
+								color: @bootstrap-success;
+							}
+						}
+					}
+					.time {
+						font-weight: bold;
+					}
+				}
+				.card-body {
+					.class-block {
+						font-weight: bold;
+						.class {
+						}
+						.type {
+						}
+						.function {
+						}
+					}
+					.file-block {
+						color: #777;
+						.file {
+						}
+						.line {
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.clipper {
+	right: 0;
+	position: absolute;
+	z-index: 1;
+	display: flex;
+	a {
+		padding: 0.25em 1em;
+	}
+	i, svg {
+		font-size: 2em;
+	}
+}

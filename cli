@@ -1,0 +1,28 @@
+<?php
+
+	use Core\Classes\Config;
+	use Core\Classes\Language;
+	use Core\Classes\Console\Console;
+	use Core\Classes\Hooks\Hooks;
+
+	$argv[0] = basename($argv[0]);
+
+	define('CLI', $argv[0]);
+
+	ini_set('memory_limit', "128M");
+
+	require 'gateway.php';
+
+	$hooks = Hooks::getInstance();
+	$hooks->before('cli_run');
+
+	$config = Config::getInstance();
+	$config->setConfigs();
+
+	$language = Language::getInstance();
+
+	$console = new Console($argv);
+	$console->searchCommandInCommandsList();
+	$console->runCommand();
+
+	$hooks->after('cli_run');

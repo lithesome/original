@@ -1,0 +1,24 @@
+AddDefaultCharset utf-8
+Options -Indexes
+ErrorDocument 403 /
+RewriteEngine on
+
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^(.*)$ %{REQUEST_SCHEME}://%1/$1 [L,R]
+
+RewriteCond %{REQUEST_FILENAME} !/public/
+RewriteRule ^(.*)$ public/$1 [L,QSA]
+
+Options -ExecCGI
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+DirectoryIndex main.php
+RewriteRule ^(.*)$ public/main.php [L]
+
+#Options +ExecCGI
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#DirectoryIndex main.cgi
+#RewriteRule ^(.*)$ ./main.cgi [L]
+#AddHandler cgi-script .cgi
+#AddType text/html .cgi

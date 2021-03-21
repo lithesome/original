@@ -1,0 +1,9 @@
+.paginate .pagination .page-item.active .page-link {
+  background: #4a76a8;
+  color: #fff;
+  font-weight: bold;
+  z-index: 0;
+}
+.paginate .pagination .page-item .page-link {
+  border-radius: 0;
+}

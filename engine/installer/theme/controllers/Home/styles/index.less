@@ -1,0 +1,62 @@
+@import "../../../styles/var";
+
+.logo {
+	a {
+		&:hover {
+			background: none;
+		}
+		img {
+			//padding-left: 1em;
+			max-width: 185px;
+		}
+	}
+}
+
+.sidebar-button {
+	.button {
+		padding: 1em 0;
+		&:hover {
+			opacity: 0.7;
+		}
+		i, svg {
+			font-size: 24px;
+			color: @white;
+		}
+	}
+}
+
+.sidebar-fon {
+	background: rgba(0, 0, 0, 0.5);
+	position: fixed;
+	bottom: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+	cursor: pointer;
+	z-index: 5554;
+}
+
+.side-bar-hider {
+	background: @main-color;
+	background: #fff;
+	padding: 0.5em 1em;
+	//width: 100%;
+	.text {
+		text-align: center;
+		line-height: 2;
+		font-size: 16px;
+		font-style: italic;
+		color: #ccc;
+	}
+	&:hover {
+		cursor: pointer;
+		background: @main-hover-fon;
+		.text {
+			color: #686868;
+		}
+	}
+	i, svg {
+		color: @bootstrap-danger;
+		font-size: 30px;
+	}
+}

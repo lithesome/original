@@ -1,0 +1,16 @@
+.header-items .link {
+  padding: 1em 0;
+  text-align: center;
+}
+.header-items .link .icon i,
+.header-items .link .icon svg {
+  color: #fff;
+  font-size: 1.5em;
+}
+.header-items .link:hover {
+  background: #fff;
+}
+.header-items .link:hover i,
+.header-items .link:hover svg {
+  color: #4a76a8;
+}

@@ -1,0 +1,6 @@
+{
+	"require": {
+		"phpmyadmin/sql-parser": "^5.4",
+		"ivan-matthews/poster": "^0.1.0"
+	}
+}

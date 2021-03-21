@@ -1,0 +1,170 @@
+<?php
+
+	if (!file_exists(__DIR__ . '/../config.php')) {
+		exit('System not installed! Run command `php engine/install` in your console! Exit...' . PHP_EOL);
+	}
+
+	require __DIR__ . '/../gateway.php';
+
+	new Updater('https://api.github.com/repos/lithesome/original/tags');
+
+	class Updater
+	{
+		const SECTION_HEAD = 1;
+		const SECTION_ITEM = 2;
+
+		private $animated;
+
+		protected $releases_link;
+
+		protected $current_version;
+
+		protected $latestVersion = array(
+			'name' => null,
+			'zipball_url' => null,
+			'tarball_url' => null,
+			'commit' => array(
+				'sha' => null,
+				'url' => null,
+			),
+			'node_id' => null,
+		);
+
+		protected $filesList = array();
+		protected $ignores = array();
+
+		public function __construct($releases_link)
+		{
+			$this->animated = !isset($_SERVER['argv'][1]);
+
+			$this->releases_link = $releases_link;
+
+			$this->getCurrentVersion();
+			$this->__('Get latest version' . PHP_EOL, self::SECTION_HEAD);
+			$this->getLatestVersion();
+			if (!$this->checkVersions()) {
+				exit('System version is up-to-date! Exit...' . PHP_EOL);
+			}
+			$this->__('Save files' . PHP_EOL, self::SECTION_HEAD);
+			$this->saveZip();
+			$this->__('Extract files' . PHP_EOL, self::SECTION_HEAD);
+			$this->extractZipFiles();
+			$this->__('Copy files' . PHP_EOL, self::SECTION_HEAD);
+			$this->copyFiles();
+			$this->__('Update latest version info' . PHP_EOL, self::SECTION_HEAD);
+			$this->updateNewVersion();
+			$this->__('Remove updater files' . PHP_EOL, self::SECTION_HEAD);
+			$this->clean();
+		}
+
+		protected function getCurrentVersion()
+		{
+			$this->current_version = file_get_contents(get_root_path('engine/updater/version.txt'));
+			return $this;
+		}
+
+		protected function getLatestVersion()
+		{
+			$poster = new \IvanMatthews\Poster\Poster($this->releases_link);
+			$poster->header('Accept', 'application/vnd.github.v3+json');
+			$poster->header('user-agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36');
+			$poster->ready();
+			$poster->get();
+			$response = json_decode($poster->getResponseContent(), true);
+			$this->latestVersion = isset($response[0]) ? $response[0] : $this->latestVersion;
+			return $this;
+		}
+
+		protected function checkVersions()
+		{
+			return $this->latestVersion['name'] > $this->current_version;
+		}
+
+		protected function saveZip()
+		{
+			$file_name = $this->latestVersion['name'] . '.zip';
+			$poster = new \IvanMatthews\Poster\Poster($this->latestVersion['zipball_url']);
+			$poster->header('user-agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36');
+			$poster->ready();
+			$poster->get();
+			file_put_contents(get_root_path('engine/updater/' . $file_name), $poster->getResponseContent());
+			return $this;
+		}
+
+		protected function extractZipFiles()
+		{
+			$zip = new ZipArchive;
+			$zip->open(get_root_path('engine/updater/' . $this->latestVersion['name'] . '.zip'));
+			for ($i = 0; $i < $zip->numFiles; $i++) {
+				$stat = $zip->statIndex($i);
+				$this->filesList[] = $stat['name'];
+			}
+			$zip->extractTo(get_root_path('engine/updater/temp/'));
+			$zip->close();
+			return $this;
+		}
+
+		protected function updateNewVersion()
+		{
+			file_put_contents(get_root_path('engine/updater/version.txt'), $this->latestVersion['name']);
+			return $this;
+		}
+
+		protected function setIgnoredList()
+		{
+			$this->ignores = file(get_root_path('engine/updater/.ignore'), FILE_IGNORE_NEW_LINES);
+			return $this;
+		}
+
+		protected function isIgnored($ignoredFile){
+			foreach($this->ignores as $file){
+				if(mb_strpos($ignoredFile, $file) !== false){
+					return true;
+				}
+			}
+			return false;
+		}
+
+		protected function copyFiles()
+		{
+			$root_folder = isset($this->filesList[0]) ? $this->filesList[0] : die('Files not found!' . PHP_EOL);
+			$this->setIgnoredList();
+			foreach ($this->filesList as $file) {
+				if($this->isIgnored($file)){ continue; }
+
+				$newFilePath = str_replace($root_folder, '', $file);
+				if (make_dir(get_root_path(dirname($newFilePath)))) {
+					$this->__("\tcreate directory " . get_root_path(dirname($newFilePath)) . PHP_EOL, self::SECTION_ITEM);
+				}
+				$this->__("\tcreate file " . get_root_path($newFilePath) . PHP_EOL, self::SECTION_ITEM);
+				copy(get_root_path('engine/updater/temp/' . $file), get_root_path($newFilePath));
+			}
+			return $this;
+		}
+
+		protected function clean()
+		{
+			scan_dir_recursive_callback(get_root_path('engine/updater/temp/'), function ($file_or_dir) {
+				if (is_dir($file_or_dir)) {
+					$this->__("\tremove directory " . $file_or_dir . PHP_EOL, self::SECTION_ITEM);
+					rmdir($file_or_dir);
+					return true;
+				}
+				$this->__("\tremove file " . $file_or_dir . PHP_EOL, self::SECTION_ITEM);
+				unlink($file_or_dir);
+				return true;
+			});
+			$this->__("\tremove file " . get_root_path('engine/updater/' . $this->latestVersion['name'] . '.zip') . PHP_EOL, self::SECTION_ITEM);
+			unlink(get_root_path('engine/updater/' . $this->latestVersion['name'] . '.zip'));
+			return $this;
+		}
+
+		protected function __($string, $animated_level)
+		{
+			__($string);
+			if ($this->animated) {
+				equal($animated_level, self::SECTION_HEAD) ? sleep(1) : usleep(25000);
+			}
+			return $this;
+		}
+	}
