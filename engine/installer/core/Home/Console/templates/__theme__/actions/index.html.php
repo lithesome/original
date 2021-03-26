@@ -10,8 +10,8 @@
 	$this->appendCSS('controllers/__controller_ns__/styles/index');
 	$this->appendJS('controllers/__controller_ns__/scripts/index');
 ?>
-<div class="__controller_ns__ __controller_ns__-__action_ns__ col-12">
-	<div class="col-12 title mb-2">
+<div class="__controller_ns__ __controller_ns__-__action_ns__">
+	<div class="title bb-title mb-2">
 		<h1>
 			<?php __(lang('__controller_ns__.action.__action_c___title')) ?>
 		</h1>

@@ -7,11 +7,11 @@
 	class Controller extends ParentController
 	{
 		/** @var Model */
-		protected $model;
+		public $model;
 
-		protected $limit = 15;
-		protected $offset = 0;
-		protected $total;
+		public $limit = 15;
+		public $offset = 0;
+		public $total;
 
 		public function __construct()
 		{

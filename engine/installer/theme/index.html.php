@@ -17,15 +17,6 @@ $this->addCSS('styles/header');
 $this->addJS('scripts/libraries/functions');
 $this->addJS('scripts/index');
 
-$this->widgets = $this->widgets ?: Widgets::getInstance()
-	->executeAll(function ($widget) {
-		$widget_file = get_root_theme($widget['template'] . '.html.php');
-		if (file_exists($widget_file)) {
-			return $this->render($widget_file, $widget);
-		}
-		return null;
-	});
-
 ?><!DOCTYPE html>
 <html lang="<?php __(Language::getLanguageKey()) ?>">
 <head>

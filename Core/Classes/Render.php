@@ -41,6 +41,7 @@
 			$this->request = Request::getInstance();
 			$this->response = Response::getInstance();
 			$this->router = Router::getInstance();
+			$this->widgets = new stdClass();
 			$this->spotDataRenderingType(strtolower($this->request->header('Accept')));
 		}
 

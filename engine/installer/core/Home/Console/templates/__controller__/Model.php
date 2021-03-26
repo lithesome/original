@@ -57,13 +57,16 @@
 
 		/**
 		 * Получить список всех записей
+		 * @param $limit
+		 * @param $offset
 		 * @return array
 		 */
-		public function get__controller_ns__Items()
+		public function get__controller_ns__Items($limit, $offset)
 		{
 			return $this->__controller_c__->select()
 				->query('status = :status')
 				->prepare(':status', STATUS_ACTIVE)
+				->limit($limit, $offset)
 				->exec()
 				->all();
 		}

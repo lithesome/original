@@ -2,7 +2,6 @@
 
 	namespace Core\Classes\Access;
 
-	use Core\Classes\Session\Session;
 	use Core\Interfaces\Access\Denied as DeniedInterface;
 
 	class Denied extends Access implements DeniedInterface
@@ -62,9 +61,8 @@
 		public function checkGroups(array $groups)
 		{
 			if ($groups) {
-				$user_groups = Session::auth('groups') ?: array(1);
 				foreach ($groups as $group) {
-					if (in_array($group, $user_groups)) {
+					if($this->checkGroup($group)){
 						$this->access = true;
 						break;
 					}

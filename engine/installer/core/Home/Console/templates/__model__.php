@@ -7,7 +7,7 @@
 
 	/**
 	 * Class __model__
-	 * @package Controllers\__controller_ns__
+	 * @package Controllers\__controller_ns__\Models
 	 * @property Table $__controller_c__
 	 * @method static |Table __controller_c__(...$other_tables)
 	 */
@@ -57,13 +57,16 @@
 
 		/**
 		 * Получить список всех записей
+		 * @param $limit
+		 * @param $offset
 		 * @return array
 		 */
-		public function get__controller_cu__Items()
+		public function get__controller_cu__Items($limit, $offset)
 		{
 			return $this->__controller_c__->select()
 				->query('status = :status')
 				->prepare(':status', STATUS_ACTIVE)
+				->limit($limit, $offset)
 				->exec()
 				->all();
 		}

@@ -2,7 +2,6 @@
 
 	namespace Core\Classes\Access;
 
-	use Core\Classes\Session\Session;
 	use Core\Interfaces\Access\Granted as GrantedInterface;
 
 	/**
@@ -83,10 +82,9 @@
 				if (!$this->access) {
 					return $this;
 				}
-				$user_groups = Session::auth('groups') ?: array(1);
 				foreach ($groups as $group) {
 					$this->access = false;
-					if (in_array($group, $user_groups)) {
+					if($this->checkGroup($group)){
 						$this->access = true;
 						break;
 					}

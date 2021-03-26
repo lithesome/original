@@ -3,7 +3,6 @@
 	namespace Controllers\__controller_ns__\Actions;
 
 	use Controllers\__controller_ns__\Controller as ParentController;
-	use Controllers\__controller_ns__\Model;
 
 	/**
 	 * Class __action_ns__
@@ -19,7 +18,6 @@
 		public function __construct()
 		{
 			parent::__construct();
-			$this->model = new Model();
 			$this->response->setController('__controller_ns__');
 			$this->response->setAction('__action_ns__');
 		}

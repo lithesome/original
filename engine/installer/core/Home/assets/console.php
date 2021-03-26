@@ -174,7 +174,7 @@
 
 	Console::register("make:model {controller}:{model_name}", function (Maker $command) {
 		$command->controller(\Controllers\Home\Console\Make\Model::class);
-		$command->command('make:model[ model_name]');
+		$command->command('make:model[ controller[:model_name]]');
 		$command->example('make:model Home:CategoriesModel');
 		$command->description('Home.cli.make_model');
 	});

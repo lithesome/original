@@ -4,6 +4,7 @@
 
 	use Core\Classes\Request;
 	use Core\Classes\Router\Router;
+	use Core\Classes\Session\Session;
 	use Core\Interfaces\Access\Access as AccessInterface;
 
 	class Access implements AccessInterface
@@ -42,10 +43,19 @@
 			return equal($controller, $this->controller) && equal($action, $this->action);
 		}
 
+		public function checkGroup($group){
+			$user_groups = Session::auth('groups') ?: array(1);
+			return in_array($group, $user_groups);
+		}
+
 		public function access($status)
 		{
 			$this->access = $status;
 			return $this;
+		}
+
+		public function status(){
+			return $this->access;
 		}
 
 		public function callback(array $arguments)
