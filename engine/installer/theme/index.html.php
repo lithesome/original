@@ -59,7 +59,7 @@ $this->addJS('scripts/index');
 		<?php if (!$this->widgets->empty('before_content')) { ?>
 			<?php __($this->widgets->get('before_content')) ?>
 		<?php } ?>
-		<div class="col-12 col-lg-9 content p-3">
+		<div class="<?php if (!$this->widgets->empty('sidebar')) { ?>col-12 col-lg-9<?php }else{ ?>no-sidebar col-12<?php } ?> content p-3">
 			<?php __($this->getContent()) ?>
 		</div>
 		<?php if (!$this->widgets->empty('after_content')) { ?>
@@ -92,3 +92,4 @@ $this->addJS('scripts/index');
 <?php $this->renderCssFiles() ?>
 </body>
 </html>
+

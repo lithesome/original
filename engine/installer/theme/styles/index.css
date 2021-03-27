@@ -94,6 +94,10 @@ body .body .content-position .content {
     border: none;
   }
 }
+body .body .content-position .content.no-sidebar {
+  border: none;
+  min-height: 90vh;
+}
 body .content-bottom {
   background: #fff;
   border: solid 1px rgba(0, 0, 0, 0.125);
@@ -415,3 +419,4 @@ form button:focus {
 body {
   tab-size: 25px;
 }
+
