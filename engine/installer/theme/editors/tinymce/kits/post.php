@@ -116,8 +116,9 @@
 //			{text: 'C', value: 'c'},
 //			{text: 'C#', value: 'csharp'},
 //			{text: 'C++', value: 'cpp'}
-						{text: 'JAVA Script', value: 'javascript'},
 						{text: 'PHP', value: 'php'},
+						{text: 'HTML', value: 'html'},
+						{text: 'JAVA Script', value: 'javascript'},
 						{text: 'python', value: 'python'},
 						{text: 'BASH', value: 'bash'},
 						{text: 'SQL', value: 'sql'},

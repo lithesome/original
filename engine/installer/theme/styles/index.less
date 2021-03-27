@@ -1,15 +1,5 @@
 @import "var";
 
-@font-face {
-	font-family: "icons-font";
-	src: url(../fonts/icons-font.eot);
-	src: url("../fonts/icons-font.eot?#iefix") format("eot"),
-	url(../fonts/icons-font.woff2) format("woff2"),
-	url(../fonts/icons-font.woff) format("woff"),
-	url(../fonts/icons-font.ttf) format("truetype"),
-	url("../fonts/icons-font.svg#icons-font") format("svg")
-}
-
 body {
 	font-size: 13px;
 	background: @fon;
@@ -108,22 +98,28 @@ body {
 			}
 		}
 		.content-position {
-			background: @white;
-			border: @line;
+			>div{
+				background: @white;
+			}
+			//background: @white;
+			//border: @line;
 			.content-up {
 				.breadcrumbs {
-					border-bottom: @line;
+					//border-bottom: @line;
 				}
 			}
 			.content {
-				min-height: 90vh;
+				border-left: 0.5rem solid @fon;
+				@media (max-width: 991px){
+					border: none;
+				}
 				.title {
-					border-bottom: @line;
+					//border-bottom: @line;
 				}
 			}
 			.content-down {
 				.breadcrumbs {
-					border-top: @line;
+					//border-top: @line;
 				}
 			}
 		}
@@ -141,7 +137,7 @@ body {
 		//border: @line;
 	}
 	.breadcrumbs {
-		padding: 0.65em 0.5em;
+		padding: 0.5em;
 		//a + a::before {
 		//	display: inline-block;
 		//	//padding-right: 0.5rem;
@@ -563,4 +559,11 @@ form {
 	max-height: 60px;
 	max-width: 60px;
 	margin: auto;
+}
+
+.bb-title{
+	border-bottom: @line;
+}
+body{
+	tab-size: 25px;
 }

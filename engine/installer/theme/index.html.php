@@ -43,37 +43,33 @@ $this->addJS('scripts/index');
 	</div>
 <?php } ?>
 <main class="container body mt-2">
-	<div class="row justify-content-center">
+	<div class="row justify-content-center content-position">
+		<?php if (!$this->widgets->empty('content_up')) { ?>
+			<div class="content-up mb-2 col-12 p-0">
+				<?php __($this->widgets->get('content_up')) ?>
+			</div>
+		<?php } ?>
 		<?php if (!$this->widgets->empty('sidebar')) { ?>
-			<div class="sidebar-panel col-3 pr-2 d-none d-lg-block">
+			<div class="sidebar-panel col-3 d-none d-lg-block">
 				<div class="sidebar">
 					<?php __($this->widgets->get('sidebar')) ?>
 				</div>
 			</div>
 		<?php } ?>
-		<div class="content-position col-12<?php if (!$this->widgets->empty('sidebar')) { ?> col-lg-9<?php } ?> p-0">
-			<?php if (!$this->widgets->empty('content_up')) { ?>
-				<div class="content-up mb-2">
-					<?php __($this->widgets->get('content_up')) ?>
-				</div>
-			<?php } ?>
-
-			<div class="content">
-				<?php if (!$this->widgets->empty('before_content')) { ?>
-					<?php __($this->widgets->get('before_content')) ?>
-				<?php } ?>
-				<?php __($this->getContent()) ?>
-				<?php if (!$this->widgets->empty('after_content')) { ?>
-					<?php __($this->widgets->get('after_content')) ?>
-				<?php } ?>
-			</div>
-
-			<?php if (!$this->widgets->empty('content_down')) { ?>
-				<div class="content-down mt-2">
-					<?php __($this->widgets->get('content_down')) ?>
-				</div>
-			<?php } ?>
+		<?php if (!$this->widgets->empty('before_content')) { ?>
+			<?php __($this->widgets->get('before_content')) ?>
+		<?php } ?>
+		<div class="col-12 col-lg-9 content p-3">
+			<?php __($this->getContent()) ?>
 		</div>
+		<?php if (!$this->widgets->empty('after_content')) { ?>
+			<?php __($this->widgets->get('after_content')) ?>
+		<?php } ?>
+		<?php if (!$this->widgets->empty('content_down')) { ?>
+			<div class="content-down mt-2 col-12 p-0">
+				<?php __($this->widgets->get('content_down')) ?>
+			</div>
+		<?php } ?>
 	</div>
 </main>
 

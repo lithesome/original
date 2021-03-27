@@ -11,7 +11,7 @@
 	$this->appendCSS('controllers/Home/styles/index');
 	$this->appendJS('controllers/Home/scripts/index');
 ?>
-<div class="Home Home-index d-flex" style="min-height: 90vh">
+<div class="Home Home-index d-flex" style="height: 100%">
 	<h1 class="m-auto" style="font-size: 20vh">
 		<?php __($hello_world) ?>
 	</h1>

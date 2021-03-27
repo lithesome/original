@@ -89,8 +89,9 @@
 					contextmenu_never_use_native: false,
 					toolbar_drawer: 'sliding',
 					codesample_languages: [
-						{text: 'JAVA Script', value: 'javascript'},
 						{text: 'PHP', value: 'php'},
+						{text: 'HTML', value: 'html'},
+						{text: 'JAVA Script', value: 'javascript'},
 						{text: 'python', value: 'python'},
 						{text: 'BASH', value: 'bash'},
 						{text: 'SQL', value: 'sql'},
