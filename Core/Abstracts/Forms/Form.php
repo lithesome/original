@@ -10,13 +10,15 @@
 
 		abstract public function getFieldsOptions();
 
+		abstract public function getFieldsErrors();
+
 		abstract public function field($field_name);
 
 		abstract public function getFieldAttribute($field_name, $attribute);
 
 		abstract public function getFieldOption($field_name, $attribute);
 
-		abstract public function getFieldErrors($field_name);
+		abstract public function getFieldError($field_name);
 
 		abstract public function setFieldOption($key, $value);
 

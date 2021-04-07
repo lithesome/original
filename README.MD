@@ -61,4 +61,4 @@ rm master.tar.gz
 Более подробная информация
 -
 
-на сайте [https://lithesome.github.io](https://lithesome.github.io)
+на сайте [https://lithesome.tech](https://lithesome.tech)

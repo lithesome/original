@@ -13,28 +13,19 @@
 
 	error_reporting(0);
 	ini_set('display_errors', '0');
-//	error_reporting(E_ALL);
-//	ini_set('display_errors', '1');
 
 	date_default_timezone_set('Europe/London');
 
-	require_once get_root_path('vendor/autoload.php');
+	include_once get_root_path('vendor/autoload.php');
+	include_once get_root_path('Core/Autoload.php');
 
-	spl_autoload_register(function ($class) {
-		$class_file_name = str_replace('\\', DIRECTORY_SEPARATOR, $class);
-		$class_file_path = get_root_path($class_file_name . '.php');
-		if (file_exists($class_file_path)) {
-			include_once $class_file_path;
-		}
-	});
+	\Core\Autoload::loadHelpers();
+
+	spl_autoload_register("\\Core\\Autoload::loadClass");
 
 	setlocale(LC_ALL, Config::core('site_locale'));
 	set_error_handler("Core\\Classes\\Errors::except");
 	register_shutdown_function('Core\\Classes\\Errors::shutDown');
-
-	foreach (get_files_list(get_root_path('Helpers')) as $file) {
-		include_once $file;
-	}
 
 	function get_root_path($file)
 	{

@@ -16,7 +16,7 @@
 		public function execute($host_and_port = '127.0.0.1:8080', $server_file = 'server.php')
 		{
 			$this->host_and_port = $host_and_port;
-			$this->file = $server_file;
+			$this->file = get_root_path($server_file);
 			$this->runSever();
 			return true;
 		}

@@ -13,7 +13,7 @@
 	 * @var string $method
 	 * @var integer $status
 	 * @var array $options
-	 * @var array $position
+	 * @var string $position
 	 * @var string $template
 	 * @var integer $relevance
 	 * @var array $arguments

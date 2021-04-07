@@ -17,6 +17,11 @@
 		public function getFieldsOptions();
 
 		/**
+		 * @return self
+		 */
+		public function getFieldsErrors();
+
+		/**
 		 * @param $field_name
 		 * @return self
 		 */
@@ -40,7 +45,7 @@
 		 * @param $field_name
 		 * @return self
 		 */
-		public function getFieldErrors($field_name);
+		public function getFieldError($field_name);
 
 		/**
 		 * @param $key

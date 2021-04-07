@@ -171,7 +171,8 @@
 				&& equal($params[0], $this->request_uri)
 				&& equal($route['status'], STATUS_ACTIVE)
 				&& $this->checkRequestMethod($route['method'])) {
-				$route['params'] = array_slice($params, 1);
+				$params = array_slice($params, 1);
+				$route['params'] = isset($route['params']) && !empty($route['params']) ? array_merge($route['params'], $params) : $params;
 				return $this->setController($route);
 			}
 			return false;

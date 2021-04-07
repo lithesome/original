@@ -35,6 +35,11 @@
 			return $this->options;
 		}
 
+		public function getFieldsErrors()
+		{
+			return $this->errors;
+		}
+
 		public function field($field_name)
 		{
 			$this->field = $field_name;
@@ -51,7 +56,7 @@
 			return isset($this->options[$field_name][$attribute]) && $this->options[$field_name][$attribute] ? $this->options[$field_name][$attribute] : null;
 		}
 
-		public function getFieldErrors($field_name)
+		public function getFieldError($field_name)
 		{
 			return isset($this->errors[$field_name]) && $this->errors[$field_name] ? $this->errors[$field_name] : null;
 		}

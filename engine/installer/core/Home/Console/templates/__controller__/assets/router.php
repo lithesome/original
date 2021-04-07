@@ -46,13 +46,13 @@
 	/**
 	 * @example
 	 * $maker = new \Core\Classes\Router\Maker('any', '/__controller_c__');
-	 * $maker->controller(\Controllers\Bookmarks\Controller::class);
+	 * $maker->controller(\Controllers\__controller_ns__\Controller::class);
 	 * $maker->action('index');
 	 * \Core\Classes\Router\Router::addRoute('__controller_c__', $maker->getRoute());    // ключ роута - уникальный и будет перезаписан при последующем вызове
 	 *
 	 * @example
 	 * \Core\Classes\Router\Maker::register('any', '/__controller_c__')
-	 *        ->controller(\Controllers\Bookmarks\Controller::class)
+	 *        ->controller(\Controllers\__controller_ns__\Controller::class)
 	 *        ->action('index')
 	 *        ->addRoute('__controller_c__');        // ключ роута - уникальный и будет перезаписан при последующем вызове
 	 */

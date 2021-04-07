@@ -25,7 +25,7 @@
 	$this->appendCSS('styles/paginate');
 
 ?>
-<nav class="paginate">
+<nav class="paginate mt-4">
 	<ul class="pagination justify-content-center">
 		<li class="page-item<?php __((!$offset ? ' disabled active' : '')) ?>">
 			<a class="page-link" href="<?php __($link) ?>">

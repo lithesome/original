@@ -37,7 +37,7 @@
 			'status' => STATUS_ACTIVE,
 			'content' => array(),
 			'options' => array(),
-			'position' => 'content_down',
+			'position' => 'after_content',
 			'template' => 'widgets/pagination',
 			'relevance' => 9990,
 			'arguments' => array(),

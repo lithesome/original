@@ -22,9 +22,10 @@
 
 	Console::register("help:cmd", function (Maker $command) {
 		$command->controller(\Controllers\Home\Console\Help\Help::class);
-		$command->command('help:cmd[ command]');
+		$command->command('help:cmd[ command[ -p|--pretty]]');
 		$command->method('runCommandHelp');
 		$command->example('help:cmd make');
+		$command->example('help:cmd make -p');
 		$command->description('Home.cli.help_command_print');
 	});
 

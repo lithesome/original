@@ -1,7 +1,11 @@
 <?php
 
 	namespace __namespace__;
-
+	
+	/**
+	 * Class __class__
+	 * @package __namespace__
+	 */
 	class __class__
 	{
 		public static function __callStatic()

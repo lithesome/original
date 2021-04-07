@@ -301,10 +301,12 @@
 		if (isset($routes[$route_key])) {
 			$router = $routes[$route_key];
 			$controller = Router::prepareControllerName($router['controller']);
+			
+			$controller_status = Config::get($controller, 'controller_status');
 			$controller_access = Config::get($controller, 'controller_access');
 			$route_access = isset($router['access']) ? $router['access'] : array();
 
-			if (access($controller_access) && access($route_access)) {
+			if (access($controller_access) && access($route_access) && equal($controller_status, STATUS_ACTIVE)) {
 				if ($params) {
 					preg_match_all("#{(.*?)}#", $router['pattern'], $route_params);
 					if (equal(count($params), count($route_params[0]))) {

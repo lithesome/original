@@ -39,6 +39,16 @@
 	 */
 	class Paint
 	{
+		private static $messages = array();
+
+		private $message = array(
+			'fon'		=> null,
+			'color'		=> null,
+			'string'	=> null,
+			'before'	=> null,
+			'after'		=> null,
+		);
+
 		protected $colors = array(
 			'colorBlack' => '0;30',
 			'colorBlue' => '0;34',
@@ -85,6 +95,7 @@
 		public function __construct($string)
 		{
 			$this->string = $string;
+			$this->message['string'] = $this->string;
 		}
 
 		/**
@@ -98,18 +109,23 @@
 
 		public function setColor($color)
 		{
+			$this->message['color'] = array_search($color, $this->colors);
 			$this->color = "\033[" . $color . "m";
 			return $this;
 		}
 
 		public function setFon($fon)
 		{
+			$this->message['fon'] = array_search($fon, $this->colors);
 			$this->fon = "\033[" . $fon . "m";
 			return $this;
 		}
 
 		public function get($before = null, $after = PHP_EOL)
 		{
+			$this->message['before'] = $before;
+			$this->message['after'] = $after;
+
 			$this->result .= $before;
 			$this->result .= $this->color;
 			$this->result .= $this->fon;
@@ -121,6 +137,17 @@
 
 		public function print($before = null, $after = PHP_EOL)
 		{
-			return __(is_cli() ? $this->get($before, $after) : null);
+			$message = $this->get($before, $after);
+			$this->setMessage();
+			return __(is_cli() ? $message : null);
+		}
+
+		protected function setMessage(){
+			self::$messages[] = $this->message;
+			return $this;
+		}
+
+		public static function getMessages(){
+			return self::$messages;
 		}
 	}

@@ -31,7 +31,7 @@
 
 		public function getNewCaptcha()
 		{
-			$this->response->setCode(300);
+			$this->response->setCode(301);
 			$captchaProvider = new Captcha();
 			$this->response->setContent('captcha', $captchaProvider->setCaptchaImage());
 			return $this;

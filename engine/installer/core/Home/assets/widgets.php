@@ -82,7 +82,6 @@
 	});
 
 	Widgets::register('header_items', function (Maker $widget) {
-		$widget->class(\Controllers\Home\Widgets\Logo::class);
 		$widget->template('controllers/Home/widgets/sidebar_button');
 		$widget->title('Home.widget.logo_widget_title');
 		$widget->relevance(1);

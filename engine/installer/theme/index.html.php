@@ -2,7 +2,6 @@
 
 use Core\Classes\Render;
 use Core\Classes\Language;
-use Core\Classes\Widgets\Widgets;
 
 /** @var Render $this */
 
@@ -56,15 +55,17 @@ $this->addJS('scripts/index');
 				</div>
 			</div>
 		<?php } ?>
-		<?php if (!$this->widgets->empty('before_content')) { ?>
-			<?php __($this->widgets->get('before_content')) ?>
-		<?php } ?>
 		<div class="<?php if (!$this->widgets->empty('sidebar')) { ?>col-12 col-lg-9<?php }else{ ?>no-sidebar col-12<?php } ?> content p-3">
+			<?php if (!$this->widgets->empty('before_content')) { ?>
+				<?php __($this->widgets->get('before_content')) ?>
+			<?php } ?>
+
 			<?php __($this->getContent()) ?>
+
+			<?php if (!$this->widgets->empty('after_content')) { ?>
+				<?php __($this->widgets->get('after_content')) ?>
+			<?php } ?>
 		</div>
-		<?php if (!$this->widgets->empty('after_content')) { ?>
-			<?php __($this->widgets->get('after_content')) ?>
-		<?php } ?>
 		<?php if (!$this->widgets->empty('content_down')) { ?>
 			<div class="content-down mt-2 col-12 p-0">
 				<?php __($this->widgets->get('content_down')) ?>

@@ -4,7 +4,7 @@
 
 	class Test
 	{
-		private static $tests_raw_lis = array();
+		private static $tests_raw_list = array();
 
 		protected $tests_list = array();
 
@@ -17,7 +17,7 @@
 
 		public static function addTest(array $test)
 		{
-			self::$tests_raw_lis[] = $test;
+			self::$tests_raw_list[] = $test;
 			return true;
 		}
 
@@ -29,7 +29,7 @@
 
 		public static function getRawList()
 		{
-			return self::$tests_raw_lis;
+			return self::$tests_raw_list;
 		}
 
 		public function getTestsList()
@@ -39,7 +39,7 @@
 
 		protected function sortTestsList()
 		{
-			foreach (self::$tests_raw_lis as $test) {
+			foreach (self::$tests_raw_list as $test) {
 				$this->tests_list[$this->makeIndex($test['relevance'])] = $test;
 			}
 			ksort($this->tests_list);

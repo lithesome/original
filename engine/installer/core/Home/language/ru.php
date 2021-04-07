@@ -30,6 +30,7 @@
 		'cli.make_hook' => 'Создать класс хука',
 		'cli.make_test' => 'Создать класс теста',
 		'cli.make_db_driver' => 'Создать классы драйвера и билдера Базы Данных',
+		'cli.make_model'	=> 'Создать класс модели',
 		'cli.install_engine' => 'Установить систему',
 		'cli.controller_install' => 'Установить контроллер',
 		'cli.controller_remove' => 'Удалить контроллер',

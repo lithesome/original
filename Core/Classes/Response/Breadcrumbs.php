@@ -38,14 +38,8 @@
 
 		public function set()
 		{
-			$this->setTitle();
-			$this->response->setBreadCrumbs($this->key, $this->scope['link'], $this->scope['value'], $this->scope['icon']);
-			return $this;
-		}
-
-		private function setTitle()
-		{
-			$this->response->setTitle($this->key, $this->scope['value']);
+			$this->response->setTitle($this->key, $this->scope['value'])
+				->setBreadCrumbs($this->key, $this->scope['link'], $this->scope['value'], $this->scope['icon']);
 			return $this;
 		}
 	}

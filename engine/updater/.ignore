@@ -1,4 +1,7 @@
+.gitignore
 default.htaccess
 default.composer.json
 default.config.php
 /engine/install
+/engine/updater/.ignore
+/engine/updater/version.txt

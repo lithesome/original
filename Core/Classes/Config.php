@@ -6,13 +6,11 @@
 	 * Class Config
 	 * @package Core\Classes
 	 * @method static core($key, $value = null)
-	 * @method static mail($key, $value = null)
 	 * @method static cache($key, $value = null)
 	 * @method static database($key, $value = null)
 	 * @method static session($key, $value = null)
 	 * @method static templates($key, $value = null)
 	 * @method static MySQLi($key, $value = null)
-	 * @method static captcha($key, $value = null)
 	 */
 	class Config
 	{

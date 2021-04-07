@@ -64,6 +64,8 @@
 //			remove installer files
 			$this->__('REMOVE INSTALLER FILES' . PHP_EOL, self::SECTION_HEAD);
 			$this->clean();
+			
+			$this->updateBowerJsonFile();
 		}
 
 		protected function updateComposer()
@@ -98,6 +100,14 @@
 		{
 			$this->__("\trename " . $oldName . ' to ' . $newName . PHP_EOL, self::SECTION_ITEM);
 			rename($oldName, $newName);
+			return $this;
+		}
+		
+		protected function updateBowerJsonFile(){
+			$bower_file = $this->get_root_theme('bower.json');
+			$content = file_get_contents($bower_file);
+			$content = str_replace('__default_theme__', $this->theme, $content);
+			file_put_contents($bower_file, $content);
 			return $this;
 		}
 

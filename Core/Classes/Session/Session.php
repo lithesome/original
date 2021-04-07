@@ -127,9 +127,7 @@
 		public static function destroy($session_key)
 		{
 			if (isset($_SESSION[$session_key])) {
-				foreach ($_SESSION[$session_key] as $key => $value) {
-					unset($_SESSION[$session_key]);
-				}
+				unset($_SESSION[$session_key]);
 				return true;
 			}
 			return false;
