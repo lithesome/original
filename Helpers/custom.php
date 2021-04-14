@@ -289,6 +289,8 @@
 	 * Так же проверить права доступа к ссылке.
 	 * Если права разрешены и не запрещены - возвращает (string) ссылку, или (null)
 	 *
+	 * 09.04.2021: замено {(.*?)} на ({(.*?)}|\((.*?)\)) для роутов с "жестким" шаблоном (/([a-z]+), /([0-9]+) и т.д.)
+	 *
 	 * @param $route_key
 	 * @param array ...$params
 	 * @return null|string
@@ -308,7 +310,7 @@
 
 			if (access($controller_access) && access($route_access) && equal($controller_status, STATUS_ACTIVE)) {
 				if ($params) {
-					preg_match_all("#{(.*?)}#", $router['pattern'], $route_params);
+					preg_match_all("#({(.*?)}|\((.*?)\))#", $router['pattern'], $route_params);
 					if (equal(count($params), count($route_params[0]))) {
 						return '/' . trim(str_replace($route_params[0], $params, $router['pattern']), '/');
 					}

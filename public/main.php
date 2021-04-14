@@ -7,6 +7,7 @@
 	use Core\Classes\Language;
 	use Core\Classes\Request;
 	use Core\Classes\Render;
+	use Core\Classes\Server;
 	use Core\Classes\Config;
 
 	require __DIR__ . '/../gateway.php';
@@ -21,9 +22,9 @@
 
 	$request = Request::getInstance();
 	$hooks->before('request_set');
-	$request->setRequestUri($_SERVER['REQUEST_URI']);
-	$request->setRequestQuery($_SERVER['REQUEST_URI']);
-	$request->setRequestMethod($_SERVER['REQUEST_METHOD']);
+	$request->setRequestUri(Server::get('REQUEST_URI'));
+	$request->setRequestQuery(Server::get('REQUEST_URI'));
+	$request->setRequestMethod(Server::get('REQUEST_METHOD'));
 	$request->setRequestArray($_REQUEST);
 	$request->setHeadersArray(getallheaders());
 	$hooks->after('request_set');

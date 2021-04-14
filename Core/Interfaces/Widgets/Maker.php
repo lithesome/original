@@ -24,5 +24,7 @@
 
 		public function options(array $value);
 
+		public function option($key, $value);
+
 		public function custom($key, $value);
 	}

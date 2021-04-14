@@ -46,6 +46,8 @@
 		</label>
 	<?php } ?>
 
+	<?php if(isset($attributes['required'])){ unset($attributes['required']); } ?>
+
 	<textarea class="form-control" <?php __($this->array2Attributes($attributes)) ?>><?php ___($value) ?></textarea>
 
 	<?php if (isset($options['description'])) { ?>

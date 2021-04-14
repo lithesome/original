@@ -41,7 +41,7 @@ $this->addJS('scripts/index');
 		<?php __($this->widgets->get('content_top')) ?>
 	</div>
 <?php } ?>
-<main class="container body mt-2">
+<main class="container body mt-1">
 	<div class="row justify-content-center content-position">
 		<?php if (!$this->widgets->empty('content_up')) { ?>
 			<div class="content-up mb-2 col-12 p-0">

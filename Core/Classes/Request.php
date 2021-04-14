@@ -36,10 +36,10 @@
 		{
 			if (key_exists(1, $arguments)) {
 				$method = 'set' . $name;
-			} else {
-				$method = 'get' . $name;
+				return method_exists($this, $method) ? $this->{$method}(...$arguments) : $this;
 			}
-			return $this->{$method}(...$arguments);
+			$method = 'get' . $name;
+			return method_exists($this, $method) ? $this->{$method}(...$arguments) : null;
 		}
 
 		public function __construct()

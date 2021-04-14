@@ -84,6 +84,12 @@
 			return $this;
 		}
 
+		public function option($key, $value)
+		{
+			$this->scope['options'][$key] = $value;
+			return $this;
+		}
+
 		public function custom($key, $value)
 		{
 			$this->scope[$key] = $value;

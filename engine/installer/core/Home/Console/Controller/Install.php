@@ -28,11 +28,12 @@
 					if (equal($method, '__construct')) {
 						continue;
 					}
-					call_user_func(array($installer_instance, $method));
 					Paint::string(lang('Home.cli.class_method_called', array(
 						'%class%' => $this->installer_class,
 						'%method%' => $method
 					)))->fonGreen()->print();
+
+					call_user_func(array($installer_instance, $method));
 				}
 				return $this;
 			}
