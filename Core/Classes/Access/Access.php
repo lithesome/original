@@ -43,7 +43,8 @@
 			return equal($controller, $this->controller) && equal($action, $this->action);
 		}
 
-		public function checkGroup($group){
+		public function checkGroup($group)
+		{
 			$user_groups = Session::auth('groups') ?: array(1);
 			return in_array($group, $user_groups);
 		}
@@ -54,7 +55,8 @@
 			return $this;
 		}
 
-		public function status(){
+		public function status()
+		{
 			return $this->access;
 		}
 

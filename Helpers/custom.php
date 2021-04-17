@@ -303,7 +303,7 @@
 		if (isset($routes[$route_key])) {
 			$router = $routes[$route_key];
 			$controller = Router::prepareControllerName($router['controller']);
-			
+
 			$controller_status = Config::get($controller, 'controller_status');
 			$controller_access = Config::get($controller, 'controller_access');
 			$route_access = isset($router['access']) ? $router['access'] : array();

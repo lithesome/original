@@ -1,9 +1,11 @@
 .sidebar-panel .menu a {
-  font-weight: bold;
+	font-weight: bold;
 }
+
 .sidebar-panel .menu a.active {
-  background: #d9e2ec;
+	background: #d9e2ec;
 }
+
 .sidebar-panel .menu a .menu-value {
-  padding: 1em;
+	padding: 1em;
 }

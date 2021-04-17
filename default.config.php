@@ -39,3 +39,4 @@
 	Config::templates('title_delimiter', '&rarr;');
 	Config::templates('breadcrumbs_delimiter', '<i class="fas fa-long-arrow-alt-right"></i>');
 	Config::templates('breadcrumbs_on_main', false);
+	Config::templates('files_version_date_format', 'YmdH');

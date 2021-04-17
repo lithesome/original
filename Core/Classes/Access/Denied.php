@@ -62,7 +62,7 @@
 		{
 			if ($groups) {
 				foreach ($groups as $group) {
-					if($this->checkGroup($group)){
+					if ($this->checkGroup($group)) {
 						$this->access = true;
 						break;
 					}

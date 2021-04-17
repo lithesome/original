@@ -4,7 +4,7 @@
 
 	class CronTask extends Make
 	{
-		protected $target_template = 'Controllers/Home/Console/templates/__controller__/Cron/SimpleCronTask.php';
+		protected $target_template = 'Controllers/Home/Console/templates/components/controller/SimpleCronTask.php';
 
 		public function __construct()
 		{

@@ -26,7 +26,9 @@
 		{
 			$param_method = isset($this->params_methods[$param]) ? $this->params_methods[$param] : 'simplePrint';
 			foreach ($this->commands as $command) {
-				if(!$command['example']){ continue; }
+				if (!$command['example']) {
+					continue;
+				}
 				$this->printLastCmd($command['command']);
 				/** @method prettyPrint | simplePrint */
 				$this->{$param_method}($command);
@@ -37,7 +39,9 @@
 		public function runCommandHelp($input_command, $params = null)
 		{
 			foreach ($this->commands as $command) {
-				if(!$command['example']){ continue; }
+				if (!$command['example']) {
+					continue;
+				}
 				$segments = $this->getCmdSegments($command['command']);
 				if (isset($segments[0]) && equal($input_command, $segments[0])) {
 					$param_method = isset($this->params_methods[$params]) ? $this->params_methods[$params] : 'simplePrint';

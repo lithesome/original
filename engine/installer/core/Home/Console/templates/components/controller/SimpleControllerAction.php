@@ -13,7 +13,7 @@
 	 * @event [personal] __controller_ns__::__action_ns___before
 	 * @event [personal] __controller_ns__::__action_ns___after
 	 */
-	class __action_ns__ extends ParentController
+	class SimpleControllerAction extends ParentController
 	{
 		public function __construct()
 		{

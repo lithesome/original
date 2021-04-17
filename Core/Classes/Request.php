@@ -140,6 +140,8 @@
 		public function setRequestQuery($request_uri)
 		{
 			parse_str(parse_url($request_uri, PHP_URL_QUERY), $this->request_query);
+			// todo: 16.04.2021 (временно) - автоматическое форматирование _GET параметров URL (ошибка в табах Search для запроса `?find="блог`)
+			$this->request_query = htmlspecialchars_r($this->request_query);
 			return $this;
 		}
 

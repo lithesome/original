@@ -84,7 +84,7 @@
 				}
 				foreach ($groups as $group) {
 					$this->access = false;
-					if($this->checkGroup($group)){
+					if ($this->checkGroup($group)) {
 						$this->access = true;
 						break;
 					}

@@ -116,9 +116,10 @@
 			return $this;
 		}
 
-		protected function isIgnored($ignoredFile){
-			foreach($this->ignores as $file){
-				if(mb_strpos($ignoredFile, $file) !== false){
+		protected function isIgnored($ignoredFile)
+		{
+			foreach ($this->ignores as $file) {
+				if (mb_strpos($ignoredFile, $file) !== false) {
 					return true;
 				}
 			}
@@ -130,7 +131,9 @@
 			$root_folder = isset($this->filesList[0]) ? $this->filesList[0] : die('Files not found!' . PHP_EOL);
 			$this->setIgnoredList();
 			foreach ($this->filesList as $file) {
-				if($this->isIgnored($file)){ continue; }
+				if ($this->isIgnored($file)) {
+					continue;
+				}
 
 				$newFilePath = str_replace($root_folder, '', $file);
 				if (make_dir(get_root_path(dirname($newFilePath)))) {

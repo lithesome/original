@@ -4,7 +4,7 @@
 
 	class Test extends Make
 	{
-		protected $target_template = 'Controllers/Home/Console/templates/__controller__/Test/SimpleTestClass.php';
+		protected $target_template = 'Controllers/Home/Console/templates/components/controller/SimpleTestClass.php';
 
 		public function __construct()
 		{

@@ -4,7 +4,7 @@
 
 	class Hook extends Make
 	{
-		protected $target_template = 'Controllers/Home/Console/templates/__controller__/Hooks/SimpleHook.php';
+		protected $target_template = 'Controllers/Home/Console/templates/components/controller/SimpleHook.php';
 
 		public function __construct()
 		{

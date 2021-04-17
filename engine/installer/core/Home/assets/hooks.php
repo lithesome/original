@@ -14,6 +14,12 @@
 		$hook->status(STATUS_ACTIVE);
 	});
 
+	Hooks::register('run_controller_after', function (Maker $hook) {
+		$hook->class(\Controllers\Home\Hooks\Response::class);
+		$hook->method('setResponse');
+		$hook->status(STATUS_ACTIVE);
+	});
+
 	Hooks::register('render_start_before', function (Maker $hook) {
 		$hook->class(\Controllers\Home\Hooks\Response::class);
 		$hook->method('renderAllWidgets');
@@ -22,7 +28,7 @@
 
 	Hooks::register('search_url_after', function (Maker $hook) {
 		$hook->class(\Controllers\Home\Hooks\Response::class);
-		$hook->method('setResponse');
+		$hook->method('setSiteNameToResponse');
 		$hook->status(STATUS_ACTIVE);
 	});
 

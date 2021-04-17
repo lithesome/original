@@ -4,7 +4,7 @@
 
 	class Form extends Make
 	{
-		protected $target_template = 'Controllers/Home/Console/templates/__controller__/Forms/SimpleForm.php';
+		protected $target_template = 'Controllers/Home/Console/templates/components/controller/SimpleForm.php';
 
 		public function __construct()
 		{

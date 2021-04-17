@@ -42,11 +42,11 @@
 		private static $messages = array();
 
 		private $message = array(
-			'fon'		=> null,
-			'color'		=> null,
-			'string'	=> null,
-			'before'	=> null,
-			'after'		=> null,
+			'fon' => null,
+			'color' => null,
+			'string' => null,
+			'before' => null,
+			'after' => null,
 		);
 
 		protected $colors = array(
@@ -142,12 +142,14 @@
 			return __(is_cli() ? $message : null);
 		}
 
-		protected function setMessage(){
+		protected function setMessage()
+		{
 			self::$messages[] = $this->message;
 			return $this;
 		}
 
-		public static function getMessages(){
+		public static function getMessages()
+		{
 			return self::$messages;
 		}
 	}

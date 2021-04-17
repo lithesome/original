@@ -85,7 +85,8 @@ body {
 						width: 100%;
 						max-width: 340px;
 						a {
-							&:last-child {}
+							&:last-child {
+							}
 						}
 					}
 				}
@@ -93,7 +94,8 @@ body {
 			.menu {
 				a {
 					font-weight: bold;
-					i, svg {}
+					i, svg {
+					}
 					&.active {
 						background: @main-hover-fon;
 					}
@@ -104,26 +106,29 @@ body {
 			}
 		}
 		.content-position {
-			>div{
+			> div {
 				background: @white;
 			}
 			.content-up {
-				.breadcrumbs {}
+				.breadcrumbs {
+				}
 			}
 			.content {
 				border-left: 0.5rem solid @fon;
 				min-height: 90vh;
-				@media (max-width: 991px){
+				@media (max-width: 991px) {
 					border: none;
 				}
-				.title {}
-				&.no-sidebar{
+				.title {
+				}
+				&.no-sidebar {
 					border: none;
 					min-height: 90vh;
 				}
 			}
 			.content-down {
-				.breadcrumbs {}
+				.breadcrumbs {
+				}
 			}
 		}
 	}
@@ -135,7 +140,8 @@ body {
 		background: @white;
 		border: @line;
 	}
-	.last-widgets-position {}
+	.last-widgets-position {
+	}
 	.breadcrumbs {
 		padding: 0.5em;
 		a {
@@ -208,14 +214,14 @@ a {
 	}
 }
 
-a {
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
+//a {
+//	-webkit-touch-callout: none;
+//	-webkit-user-select: none;
+//	-khtml-user-select: none;
+//	-moz-user-select: none;
+//	-ms-user-select: none;
+//	user-select: none;
+//}
 
 .h-1 {
 	height: 0.1em
@@ -521,61 +527,210 @@ form {
 	margin: auto;
 }
 
-.bb-title{
+.bb-title {
 	border-bottom: @line;
 }
-body{
+
+body {
 	tab-size: 25px;
 }
 
-.bg-general{background: @main-color;}
-.bg-blue{background: @bootstrap-blue;}
-.bg-indigo{background: @bootstrap-indigo;}
-.bg-purple{background: @bootstrap-purple;}
-.bg-pink{background: @bootstrap-pink;}
-.bg-red{background: @bootstrap-red;}
-.bg-orange{background: @bootstrap-orange;}
-.bg-yellow{background: @bootstrap-yellow;}
-.bg-green{background: @bootstrap-green;}
-.bg-teal{background: @bootstrap-teal;}
-.bg-cyan{background: @bootstrap-cyan;}
-.bg-white{background: @bootstrap-white;}
-.bg-gray{background: @bootstrap-gray;}
-.bg-grey{background: @bootstrap-gray;}
-.bg-gray-dark{background: @bootstrap-gray-dark;}
-.bg-primary{background: @bootstrap-primary;}
-.bg-secondary{background: @bootstrap-secondary;}
-.bg-success{background: @bootstrap-success;}
-.bg-info{background: @bootstrap-info;}
-.bg-warning{background: @bootstrap-warning;}
-.bg-danger{background: @bootstrap-danger;}
-.bg-light{background: @bootstrap-light;}
-.bg-dark{background: @bootstrap-dark;}
-.bg-magenta{background: @bootstrap-magenta;}
-.bg-brown{background: @bootstrap-brown;}
+.bg-general {
+	background: @main-color;
+}
 
-.text-general{color: @main-color;}
-.text-blue{color: @bootstrap-blue;}
-.text-indigo{color: @bootstrap-indigo;}
-.text-purple{color: @bootstrap-purple;}
-.text-pink{color: @bootstrap-pink;}
-.text-red{color: @bootstrap-red;}
-.text-orange{color: @bootstrap-orange;}
-.text-yellow{color: @bootstrap-yellow;}
-.text-green{color: @bootstrap-green;}
-.text-teal{color: @bootstrap-teal;}
-.text-cyan{color: @bootstrap-cyan;}
-.text-white{color: @bootstrap-white;}
-.text-gray{color: @bootstrap-gray;}
-.text-grey{color: @bootstrap-gray;}
-.text-gray-dark{color: @bootstrap-gray-dark;}
-.text-primary{color: @bootstrap-primary;}
-.text-secondary{color: @bootstrap-secondary;}
-.text-success{color: @bootstrap-success;}
-.text-info{color: @bootstrap-info;}
-.text-warning{color: @bootstrap-warning;}
-.text-danger{color: @bootstrap-danger;}
-.text-light{color: @bootstrap-light;}
-.text-dark{color: @bootstrap-dark;}
-.text-magenta{color: @bootstrap-magenta;}
-.text-brown{color: @bootstrap-brown;}
+.bg-blue {
+	background: @bootstrap-blue;
+}
+
+.bg-indigo {
+	background: @bootstrap-indigo;
+}
+
+.bg-purple {
+	background: @bootstrap-purple;
+}
+
+.bg-pink {
+	background: @bootstrap-pink;
+}
+
+.bg-red {
+	background: @bootstrap-red;
+}
+
+.bg-orange {
+	background: @bootstrap-orange;
+}
+
+.bg-yellow {
+	background: @bootstrap-yellow;
+}
+
+.bg-green {
+	background: @bootstrap-green;
+}
+
+.bg-teal {
+	background: @bootstrap-teal;
+}
+
+.bg-cyan {
+	background: @bootstrap-cyan;
+}
+
+.bg-white {
+	background: @bootstrap-white;
+}
+
+.bg-gray {
+	background: @bootstrap-gray;
+}
+
+.bg-grey {
+	background: @bootstrap-gray;
+}
+
+.bg-gray-dark {
+	background: @bootstrap-gray-dark;
+}
+
+.bg-primary {
+	background: @bootstrap-primary;
+}
+
+.bg-secondary {
+	background: @bootstrap-secondary;
+}
+
+.bg-success {
+	background: @bootstrap-success;
+}
+
+.bg-info {
+	background: @bootstrap-info;
+}
+
+.bg-warning {
+	background: @bootstrap-warning;
+}
+
+.bg-danger {
+	background: @bootstrap-danger;
+}
+
+.bg-light {
+	background: @bootstrap-light;
+}
+
+.bg-dark {
+	background: @bootstrap-dark;
+}
+
+.bg-magenta {
+	background: @bootstrap-magenta;
+}
+
+.bg-brown {
+	background: @bootstrap-brown;
+}
+
+.text-general {
+	color: @main-color;
+}
+
+.text-blue {
+	color: @bootstrap-blue;
+}
+
+.text-indigo {
+	color: @bootstrap-indigo;
+}
+
+.text-purple {
+	color: @bootstrap-purple;
+}
+
+.text-pink {
+	color: @bootstrap-pink;
+}
+
+.text-red {
+	color: @bootstrap-red;
+}
+
+.text-orange {
+	color: @bootstrap-orange;
+}
+
+.text-yellow {
+	color: @bootstrap-yellow;
+}
+
+.text-green {
+	color: @bootstrap-green;
+}
+
+.text-teal {
+	color: @bootstrap-teal;
+}
+
+.text-cyan {
+	color: @bootstrap-cyan;
+}
+
+.text-white {
+	color: @bootstrap-white;
+}
+
+.text-gray {
+	color: @bootstrap-gray;
+}
+
+.text-grey {
+	color: @bootstrap-gray;
+}
+
+.text-gray-dark {
+	color: @bootstrap-gray-dark;
+}
+
+.text-primary {
+	color: @bootstrap-primary;
+}
+
+.text-secondary {
+	color: @bootstrap-secondary;
+}
+
+.text-success {
+	color: @bootstrap-success;
+}
+
+.text-info {
+	color: @bootstrap-info;
+}
+
+.text-warning {
+	color: @bootstrap-warning;
+}
+
+.text-danger {
+	color: @bootstrap-danger;
+}
+
+.text-light {
+	color: @bootstrap-light;
+}
+
+.text-dark {
+	color: @bootstrap-dark;
+}
+
+.text-magenta {
+	color: @bootstrap-magenta;
+}
+
+.text-brown {
+	color: @bootstrap-brown;
+}

@@ -127,7 +127,8 @@
 
 		protected function makeFileLink($file_path, $file_extension)
 		{
-			$file_extension = Config::core('debug') ? "{$file_extension}?v=" . TIME : "{$file_extension}?v=" . date('YmdH');
+			$version = Config::core('debug') ? TIME : date(Config::templates('files_version_date_format'));
+			$file_extension = "{$file_extension}?v=" . $version;
 			$file_path = trim($file_path, '/');
 			$file_path = "{$file_path}.{$file_extension}";
 			return get_http_theme("/{$file_path}");

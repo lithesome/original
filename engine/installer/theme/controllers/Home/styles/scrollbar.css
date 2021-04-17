@@ -1,40 +1,46 @@
 .scroll-bar {
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 7.5em;
-  background: rgba(74, 118, 166, 0.1);
-  cursor: pointer;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 7.5em;
+	background: rgba(74, 118, 166, 0.1);
+	cursor: pointer;
 }
+
 @media (max-width: 991px) {
-  .scroll-bar {
-    display: none !important;
-  }
+	.scroll-bar {
+		display: none !important;
+	}
 }
+
 .scroll-bar .top-up-icon {
-  text-align: center;
+	text-align: center;
 }
+
 .scroll-bar .top-up-icon i,
 .scroll-bar .top-up-icon svg {
-  font-size: 2.5em;
-  margin-top: 100%;
+	font-size: 2.5em;
+	margin-top: 100%;
 }
+
 .scroll-bar.modified-bar {
-  z-index: 6;
-  height: 40px;
-  width: 50px;
-  top: unset;
-  bottom: 0;
-  left: unset;
-  right: 0;
-  background: rgba(0, 0, 0, 0.5) !important;
+	z-index: 6;
+	height: 40px;
+	width: 50px;
+	top: unset;
+	bottom: 0;
+	left: unset;
+	right: 0;
+	background: rgba(0, 0, 0, 0.5) !important;
 }
+
 .scroll-bar.modified-bar .top-up-icon {
-  text-align: center;
+	text-align: center;
 }
+
 .scroll-bar.modified-bar .top-up-icon i,
 .scroll-bar.modified-bar .top-up-icon svg {
-  font-size: 2.5em;
-  margin-top: 5%;
-  color: #fff !important;
+	font-size: 2.5em;
+	margin-top: 5%;
+	color: #fff !important;
 }

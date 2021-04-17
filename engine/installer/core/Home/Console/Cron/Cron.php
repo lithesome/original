@@ -122,7 +122,7 @@
 				$this->log_data[$this->key]['last_run'] = time();
 				Paint::string(lang('Home.cron.task_successful_executed', array('%task%' => $this->key)))->fonGreen()->print();
 			} catch (\Error $error) {
-				$error_key = Errors::saveError(256,
+				$error_key = Errors::saveError(E_USER_ERROR,
 					$error->getMessage(), $error->getFile(), $error->getLine()
 				);
 				$this->log_data[$this->key]['error_key'][$error_key] = time();

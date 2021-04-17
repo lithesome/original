@@ -55,7 +55,8 @@ $this->addJS('scripts/index');
 				</div>
 			</div>
 		<?php } ?>
-		<div class="<?php if (!$this->widgets->empty('sidebar')) { ?>col-12 col-lg-9<?php }else{ ?>no-sidebar col-12<?php } ?> content p-3">
+		<div
+			class="<?php if (!$this->widgets->empty('sidebar')) { ?>col-12 col-lg-9<?php } else { ?>no-sidebar col-12<?php } ?> content p-3">
 			<?php if (!$this->widgets->empty('before_content')) { ?>
 				<?php __($this->widgets->get('before_content')) ?>
 			<?php } ?>

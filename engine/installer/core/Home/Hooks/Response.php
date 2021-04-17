@@ -24,24 +24,24 @@
 			$this->render = Render::getInstance();
 		}
 
-		public function setResponse()
+		public function setSiteNameToResponse()
 		{
 			$this->response->setTitleAndBreadCrumbs('main')
 				->link('/')
 				->value(Config::templates('site_name'))
 				->icon('fas fa-home')
 				->set();
+			return $this;
+		}
 
+		public function setResponse()
+		{
 			$this->response->setMeta('charset', array(
 				'charset' => 'utf-8'
 			));
-			$this->response->setMeta('description', array(
-				'name' => 'description',
-				'content' => Config::templates('site_name'),
-			));
 			$this->response->setMeta('generator', array(
 				'name' => 'generator',
-				'content' => 'simple generated values',
+				'content' => Config::templates('site_name'),
 			));
 			$this->response->setMeta('viewport', array(
 				'name' => 'viewport',
@@ -52,6 +52,15 @@
 				'content' => 'text/html; charset=UTF-8',
 			));
 
+			$title_tags = $this->response->getTitle();
+			$this->response->setMeta('keywords', array(
+				'name' => 'keywords',
+				'content' => str_replace(array('"', '.',), array('', '',), implode(',', array_reverse($title_tags)))
+			));
+			$this->response->setMeta('description', array(
+				'name' => 'description',
+				'content' => str_replace('"', '', implode(': ', $title_tags))
+			));
 			return $this;
 		}
 

@@ -1,19 +1,22 @@
 .header-items .link {
-  padding: 1em 0;
-  text-align: center;
-  font-weight: bold;
-  color: #fff;
+	padding: 1em 0;
+	text-align: center;
+	font-weight: bold;
+	color: #fff;
 }
+
 .header-items .link .icon i,
 .header-items .link .icon svg {
-  color: #fff;
-  font-size: 1.5em;
+	color: #fff;
+	font-size: 1.5em;
 }
+
 .header-items .link:hover {
-  color: #4a76a8;
-  background: #fff;
+	color: #4a76a8;
+	background: #fff;
 }
+
 .header-items .link:hover i,
 .header-items .link:hover svg {
-  color: #4a76a8;
+	color: #4a76a8;
 }

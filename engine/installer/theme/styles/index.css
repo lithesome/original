@@ -177,14 +177,6 @@ a.close {
 .btn.btn-general:hover {
   background: #4a89a9;
 }
-a {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
 .h-1 {
   height: 0.1em;
 }

@@ -4,7 +4,7 @@
 
 	class ConsoleCommand extends Make
 	{
-		protected $target_template = 'Controllers/Home/Console/templates/__controller__/Console/SimpleCommand.php';
+		protected $target_template = 'Controllers/Home/Console/templates/components/controller/SimpleCommand.php';
 		protected $command_dir = '';
 		protected $command_ns = '';
 

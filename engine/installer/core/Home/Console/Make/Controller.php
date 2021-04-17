@@ -77,13 +77,13 @@
 			$this->createDirectory($this->path_to_save . '/Actions/');
 			foreach ($this->actions as $action) {
 				$this->replace_data = array(
-					array('__controller_ns__', '__controller_c__', '__action_ns__', '__action_c__', '__action_ns__', '__host__'),
-					array($this->controller, strtolower($this->controller), $action, strtolower($action), 'index', $this->host)
+					array('__controller_ns__', '__controller_c__', '__action_ns__', 'SimpleControllerAction', '__action_c__', '__action_ns__', '__host__'),
+					array($this->controller, strtolower($this->controller), $action, $action, strtolower($action), 'index', $this->host)
 				);
 
 				$this->createFile(
 					$this->path_to_save . '/Actions/' . $action . '.php',
-					$this->templates_path . '/__controller__/Actions/__action_ns__.php',
+					$this->templates_path . '/components/controller/SimpleControllerAction.php',
 					...$this->replace_data
 				);
 			}

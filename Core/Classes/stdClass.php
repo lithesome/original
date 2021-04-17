@@ -30,7 +30,7 @@
 
 		public function get($key = null)
 		{
-			return !$key ? $this->data : isset($this->data[$key]) ? $this->data[$key] : null;
+			return !$key ? $this->data : (isset($this->data[$key]) ? $this->data[$key] : null);
 		}
 
 		public function set($key, $value)

@@ -11,15 +11,15 @@ if (!defined(window.indexObject)) {
 			}
 			return lang_res;
 		},
-		renderDate: function(){
+		renderDate: function () {
 			let selector = $('.date-timestamp');
-			$.each(selector, function(i, v){
+			$.each(selector, function (i, v) {
 				let timestamp = $(this).attr('data-time');
-				let resultTime = timestamp ? indexObject.renderTimestamp(timestamp) : indexObject.lang('Home','render.date_never');
+				let resultTime = timestamp ? indexObject.renderTimestamp(timestamp) : indexObject.lang('Home', 'render.date_never');
 				$(this).html(resultTime);
 			});
 		},
-		renderTimestamp: function(timestamp){
+		renderTimestamp: function (timestamp) {
 			timestamp = parseInt(timestamp) * 1000;
 			let date = new Date(timestamp);
 			return indexObject.getDate(
@@ -31,50 +31,50 @@ if (!defined(window.indexObject)) {
 				date.getSeconds(),
 			);
 		},
-		getDate: function(day, month, year, hours, minutes, seconds){
+		getDate: function (day, month, year, hours, minutes, seconds) {
 			let date = new Date();
 			let time = {"%date%": indexObject.formatTime(hours) + ':' + indexObject.formatTime(minutes)/* + ':' + indexObject.formatTime(seconds)*/};
-			if(equal(year, date.getFullYear())){
-				if(equal(month, date.getMonth())){
-					if(equal(day, date.getDate())){
-						if(equal(hours, date.getHours())){
-							if(equal(minutes, date.getMinutes())){
-								if(equal(seconds, date.getSeconds())){
-									return indexObject.lang('Home','render.date_now');
+			if (equal(year, date.getFullYear())) {
+				if (equal(month, date.getMonth())) {
+					if (equal(day, date.getDate())) {
+						if (equal(hours, date.getHours())) {
+							if (equal(minutes, date.getMinutes())) {
+								if (equal(seconds, date.getSeconds())) {
+									return indexObject.lang('Home', 'render.date_now');
 								}
-								if(seconds > date.getSeconds()){
-									return indexObject.lang('Home','render.date_seconds_after', {"%time%": seconds-date.getSeconds()});
-								}else{
-									return indexObject.lang('Home','render.date_seconds_ago', {"%time%": date.getSeconds()-seconds});
+								if (seconds > date.getSeconds()) {
+									return indexObject.lang('Home', 'render.date_seconds_after', {"%time%": seconds - date.getSeconds()});
+								} else {
+									return indexObject.lang('Home', 'render.date_seconds_ago', {"%time%": date.getSeconds() - seconds});
 								}
 							}
-							if(minutes > date.getMinutes()){
-								return indexObject.lang('Home','render.date_minutes_after', {"%time%": minutes-date.getMinutes()});
-							}else{
-								return indexObject.lang('Home','render.date_minutes_ago', {"%time%": date.getMinutes()-minutes});
+							if (minutes > date.getMinutes()) {
+								return indexObject.lang('Home', 'render.date_minutes_after', {"%time%": minutes - date.getMinutes()});
+							} else {
+								return indexObject.lang('Home', 'render.date_minutes_ago', {"%time%": date.getMinutes() - minutes});
 							}
 						}
-						return indexObject.lang('Home','render.date_today', time);
+						return indexObject.lang('Home', 'render.date_today', time);
 					}
-					if(equal(day, date.getDate()-1)){
-						return indexObject.lang('Home','render.date_yesterday', time);
+					if (equal(day, date.getDate() - 1)) {
+						return indexObject.lang('Home', 'render.date_yesterday', time);
 					}
-					if(equal(day+1, date.getDate())){
-						return indexObject.lang('Home','render.date_tomorrow', time);
+					if (equal(day + 1, date.getDate())) {
+						return indexObject.lang('Home', 'render.date_tomorrow', time);
 					}
 				}
-				month = indexObject.formatMonth(month,'uc','long');
-				return day + ' ' + month + ', ' + indexObject.lang('Home','render.uc_in', time);
+				month = indexObject.formatMonth(month, 'uc', 'long');
+				return day + ' ' + month + ', ' + indexObject.lang('Home', 'render.uc_in', time);
 			}
-			month = indexObject.formatMonth(month,'uc','long');
-			return day + ' ' + month + ' ' + year + ', ' + indexObject.lang('Home','render.uc_in', time);
+			month = indexObject.formatMonth(month, 'uc', 'long');
+			return day + ' ' + month + ' ' + year + ', ' + indexObject.lang('Home', 'render.uc_in', time);
 		},
-		formatTime: function(number){
+		formatTime: function (number) {
 			return (number < 10) ? "0" + number : number;
 		},
-		formatMonth: function(month, word_case = 'uc', format = 'short'){
-			month = month+1;
-			return indexObject.lang('Home','render.date_month_' + word_case + '_' + format + '_' + month);
+		formatMonth: function (month, word_case = 'uc', format = 'short') {
+			month = month + 1;
+			return indexObject.lang('Home', 'render.date_month_' + word_case + '_' + format + '_' + month);
 		},
 		loadMore: function (self, selector) {
 			event.preventDefault();
@@ -160,7 +160,7 @@ if (!defined(window.indexObject)) {
 			},
 		},
 	});
-	
+
 	$(document).ready(indexObject.renderDate);
 	$(document).ajaxComplete(indexObject.renderDate);
 	setInterval(indexObject.renderDate, 60000);
