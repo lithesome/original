@@ -119,6 +119,20 @@
 		 */
 		public function delete__controller_ns__Item($id)
 		{
+			return $this->__controller_c__->delete()
+				->query('id = :id')
+				->prepare(':id', $id)
+				->exec()
+				->rows();
+		}
+
+		/**
+		 * Заблокировать запись по ID
+		 * @param $id
+		 * @return string
+		 */
+		public function block__controller_ns__Item($id)
+		{
 			return $this->__controller_c__->update('status', STATUS_DELETED)
 				->update('date_del', time())
 				->query('id = :id')

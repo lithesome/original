@@ -31,6 +31,7 @@ if (!defined(window.HomeObject)) {
 			$('body')
 				.append('<div class="sidebar-fon" onclick="HomeObject.hideSidebar()"></div>')
 				.css('overflow-y', 'hidden');
+			$('.sidebar', sidebar).append('<div class="empty-widget-position p-4"></div>');
 		},
 		hideSidebar: function () {
 			let sidebar = $('.sidebar-panel');
@@ -42,6 +43,7 @@ if (!defined(window.HomeObject)) {
 			$('body').css('overflow-y', 'auto');
 			logo.remove();
 			$('.side-bar-hider').parent().remove();
+			$('.empty-widget-position', sidebar).remove();
 		},
 	};
 
