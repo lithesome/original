@@ -71,8 +71,14 @@
 			$poster->ready();
 			$poster->get();
 			$response = json_decode($poster->getResponseContent(), true);
+			usort($response, array($this, 'compareVersions'));
 			$this->latestVersion = isset($response[0]) ? $response[0] : $this->latestVersion;
 			return $this;
+		}
+
+		protected function compareVersions($repo1, $repo2)
+		{
+			return strcmp($repo2['name'], $repo1['name']);
 		}
 
 		protected function checkVersions()
